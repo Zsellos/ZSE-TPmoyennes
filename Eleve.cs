@@ -16,9 +16,9 @@ namespace HNI_TPmoyennes
             classe = cla;
 		}
 
-        public float moyenneMatiere(int matiere)
+        public double moyenneMatiere(int matiere)
         {
-            float moyenne = 0.00f;
+            double moyenne = 0.00f;
             int nb_notes = 0;
             foreach (Note note in notes)
             {
@@ -26,24 +26,21 @@ namespace HNI_TPmoyennes
                 {
                     moyenne += note.note;
                     nb_notes++;
-                    Console.WriteLine($"{prenom} {nom} : matiere {matiere} note : {note.note}");
                 }
             }
-            moyenne /= nb_notes; // FIXME : nombre de chiffre après la virgule
-            Console.WriteLine($"Moy el mat : {moyenne}");
-            return moyenne;
+            moyenne /= nb_notes;
+            return Math.Round(moyenne, 2);
         }
 
-        public float moyenneGeneral()
+        public double moyenneGeneral()
         {
-            float moyenne_tot = 0.00f;
+            double moyenne_tot = 0.00f;
             for (int mat = 0; mat < classe.matieres.Count; mat++)
             {
                 moyenne_tot += moyenneMatiere(mat);
             }
             moyenne_tot /= classe.matieres.Count;
-            Console.WriteLine($"Moy el tot : {moyenne_tot}");
-            return moyenne_tot; // FIXME : precisions après la virgule
+            return Math.Round(moyenne_tot, 2);
         }
 
         public void ajouterNote(Note note)
