@@ -7,8 +7,6 @@ namespace HNI_TPmoyennes
         public string nomClasse { get; set; }
         public List<Eleve> eleves { get; set; } = new List<Eleve>();
         public List<string> matieres { get; set; } = new List<string>();
-        // FIXME : Might need to create a class for matiere
-        // Or an enum
 
         public Classe(string nom)
 		{
@@ -26,16 +24,28 @@ namespace HNI_TPmoyennes
             matieres.Add(matiere);
         }
 
-        public string moyenneMatiere(int v)
+        public float moyenneMatiere(int matiere)
         {
-            // FIXME : revise return type and type of parameters
-            throw new NotImplementedException();
+            float moyenne = 0;
+            foreach (var eleve in eleves)
+            {
+                moyenne += eleve.moyenneMatiere(matiere);
+            }
+            moyenne /= eleves.Count;
+            Console.WriteLine($"Moy mat : {moyenne}");
+            return moyenne; // FIXME : precision of number
         }
 
-        public string moyenneGeneral()
+        public float moyenneGeneral()
         {
-            // FIXME
-            throw new NotImplementedException();
+            float moyenne_gen = 0.00f;
+            for (int mat = 0; mat < matieres.Count; mat++)
+            {
+                moyenne_gen += moyenneMatiere(mat);
+            }
+            moyenne_gen /= matieres.Count;
+            Console.WriteLine($"Moy gen : {moyenne_gen}");
+            return moyenne_gen; // FIXME : precisions après la virgule
         }
     }
 }
