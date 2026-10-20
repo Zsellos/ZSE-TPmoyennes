@@ -2,7 +2,7 @@
 
 namespace HNI_TPmoyennes
 {
-	public class Classe
+	class Classe
 	{
         public string nomClasse { get; set; }
         public List<Eleve> eleves { get; set; } = new List<Eleve>();
@@ -17,7 +17,7 @@ namespace HNI_TPmoyennes
 
         public void ajouterEleve(string prenom, string nom)
         {
-            var eleve = new Eleve(prenom, nom);
+            var eleve = new Eleve(prenom, nom, this);
             eleves.Add(eleve);
         }
 
