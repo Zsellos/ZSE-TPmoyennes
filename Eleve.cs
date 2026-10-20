@@ -33,26 +33,42 @@ namespace HNI_TPmoyennes
         {
             double moyenne = 0.00f;
             int nb_notes = 0;
-            foreach (Note note in notes)
+            try
             {
-                if (note.matiere == matiere)
+                foreach (Note note in notes)
                 {
-                    moyenne += note.note;
-                    nb_notes++;
+                    if (note.matiere == matiere)
+                    {
+                        moyenne += note.note;
+                        nb_notes++;
+                    }
                 }
+                moyenne /= nb_notes;
             }
-            moyenne /= nb_notes;
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erreur lors du calcule de la moyenne de l'élève pour une matière {e}");
+            }
+
             return Math.Round(moyenne, 2);
         }
 
         public double moyenneGeneral()
         {
+
             double moyenne_tot = 0.00f;
-            for (int mat = 0; mat < classe.matieres.Count; mat++)
+            try
             {
-                moyenne_tot += moyenneMatiere(mat);
+                for (int mat = 0; mat < classe.matieres.Count; mat++)
+                {
+                    moyenne_tot += moyenneMatiere(mat);
+                }
+                moyenne_tot /= classe.matieres.Count;
             }
-            moyenne_tot /= classe.matieres.Count;
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erreur lors du calcule de la moyenne générale de l'élève : {e}");
+            }
             return Math.Round(moyenne_tot, 2);
         }
     }

@@ -43,22 +43,37 @@ namespace HNI_TPmoyennes
         public double moyenneMatiere(int matiere)
         {
             double moyenne = 0.00f;
-            foreach (var eleve in eleves)
+            try
             {
-                moyenne += eleve.moyenneMatiere(matiere);
+                foreach (var eleve in eleves)
+                {
+                    moyenne += eleve.moyenneMatiere(matiere);
+                }
+                moyenne /= eleves.Count;
             }
-            moyenne /= eleves.Count;
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erreur lors du calcule de la moyenne de classe pour une matière : {e}");
+            }
             return Math.Round(moyenne, 2);
         }
 
         public double moyenneGeneral()
         {
             double moyenne_gen = 0.00f;
-            for (int mat = 0; mat < matieres.Count; mat++)
+            try
             {
-                moyenne_gen += moyenneMatiere(mat);
+                for (int mat = 0; mat < matieres.Count; mat++)
+                {
+                    moyenne_gen += moyenneMatiere(mat);
+                }
+                moyenne_gen /= matieres.Count;
             }
-            moyenne_gen /= matieres.Count;
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erreur lors du calcule de la moyenne générale de la classe : {e}");
+            }
+            
             return Math.Round(moyenne_gen, 2);
         }
     }
