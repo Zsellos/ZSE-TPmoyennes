@@ -19,13 +19,13 @@ namespace HNI_TPmoyennes
 
         public void ajouterNote(Note note)
         {
-            if (notes.Count <= 200)
+            if (notes.Count < 200)
             {
                 notes.Add(note);
             }
             else
             {
-                Console.WriteLine($"L'élève {prenom} {nom} a déjà 200 notes. La nouvelle note {note.note} pour la matiere {note.matiere} n'a pas pu être rajoutée.");
+                Console.WriteLine($"L'élève {prenom} {nom} a déjà 200 notes. La nouvelle note {note.note} pour la matiere {note.matiere}:{classe.matieres[note.matiere]} n'a pas pu être rajoutée.");
             }
         }
 

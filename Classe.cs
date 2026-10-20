@@ -15,7 +15,7 @@ namespace HNI_TPmoyennes
 
         public void ajouterEleve(string prenom, string nom)
         {
-            if (eleves.Count <= 30)
+            if (eleves.Count < 30)
             {
                 var eleve = new Eleve(prenom, nom, this);
                 eleves.Add(eleve);
@@ -29,7 +29,7 @@ namespace HNI_TPmoyennes
 
         public void ajouterMatiere(string matiere)
         {
-            if (matieres.Count <= 10)
+            if (matieres.Count < 10)
             {
                 matieres.Add(matiere);
             }
