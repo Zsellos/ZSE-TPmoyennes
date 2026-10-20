@@ -15,13 +15,29 @@ namespace HNI_TPmoyennes
 
         public void ajouterEleve(string prenom, string nom)
         {
-            var eleve = new Eleve(prenom, nom, this);
-            eleves.Add(eleve);
+            if (eleves.Count <= 30)
+            {
+                var eleve = new Eleve(prenom, nom, this);
+                eleves.Add(eleve);
+            }
+            else
+            {
+                Console.WriteLine($"Il y a déjà 30 élèves dans la class {nomClasse}. {prenom} {nom} n'a pas pu être rajouté.");
+            }
+            
         }
 
         public void ajouterMatiere(string matiere)
         {
-            matieres.Add(matiere);
+            if (matieres.Count <= 10)
+            {
+                matieres.Add(matiere);
+            }
+            else
+            {
+                Console.WriteLine($"La matiere {matiere} n'a pas pu être rajoutée, la classe {nomClasse} a déjà 10 matières.");
+            }
+            
         }
 
         public double moyenneMatiere(int matiere)

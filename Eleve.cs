@@ -4,6 +4,7 @@ namespace HNI_TPmoyennes
 {
 	class Eleve
 	{
+        // FIXME : add condition to limit the number of notes at 200
         public string prenom {  get; set; }
         public string nom { get; set; }
         public Classe classe { get; set; }
@@ -15,6 +16,18 @@ namespace HNI_TPmoyennes
             nom = surname;
             classe = cla;
 		}
+
+        public void ajouterNote(Note note)
+        {
+            if (notes.Count <= 200)
+            {
+                notes.Add(note);
+            }
+            else
+            {
+                Console.WriteLine($"L'élève {prenom} {nom} a déjà 200 notes. La nouvelle note {note.note} pour la matiere {note.matiere} n'a pas pu être rajoutée.");
+            }
+        }
 
         public double moyenneMatiere(int matiere)
         {
@@ -41,11 +54,6 @@ namespace HNI_TPmoyennes
             }
             moyenne_tot /= classe.matieres.Count;
             return Math.Round(moyenne_tot, 2);
-        }
-
-        public void ajouterNote(Note note)
-        {
-            notes.Add(note);
         }
     }
 }
